@@ -2,7 +2,7 @@
  * ion-autocomplete 0.4.9
  * Copyright 2023 Danny Povolotski 
  * Copyright modifications 2023 Heron Santos 
- * https://github.com/HeronSantosCom/ion-autocomplete
+ * https://github.com/illimitar/ion-autocomplete
  */
 (function() {
 
