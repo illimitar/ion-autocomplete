@@ -1,6 +1,6 @@
 {
   "name": "ion-autocomplete",
-  "version": "0.4.6",
+  "version": "0.4.10",
   "description": "A configurable Ionic directive for an autocomplete dropdown",
   "main": [
     "./dist/ion-autocomplete.js",
