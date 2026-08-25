@@ -1,7 +1,7 @@
 /*
- * ion-autocomplete 0.4.9
- * Copyright 2023 Danny Povolotski 
- * Copyright modifications 2023 Heron Santos 
+ * ion-autocomplete 0.4.10
+ * Copyright 2026 Danny Povolotski 
+ * Copyright modifications 2026 Heron Santos 
  * https://github.com/illimitar/ion-autocomplete
  */
 (function() {
@@ -67,7 +67,9 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
                 this.manageExternally = valueOrDefault($attrs.manageExternally, "false");
                 this.clearOnSelect = valueOrDefault($attrs.clearOnSelect, "true");
                 this.clearOnRemove = valueOrDefault($attrs.clearOnRemove, "false");
-                this.ngModelOptions = valueOrDefault($scope.$eval($attrs.ngModelOptions), {});
+                // default debounce so the search input does not fire one request per keystroke
+                // (GESTOR-24); an explicit ng-model-options attribute still overrides this.
+                this.ngModelOptions = valueOrDefault($scope.$eval($attrs.ngModelOptions), { debounce: 300 });
                 this.openClass = valueOrDefault($attrs.openClass, 'ion-autocomplete-open');
                 this.closeClass = valueOrDefault($attrs.closeClass, 'ion-autocomplete-close');
 

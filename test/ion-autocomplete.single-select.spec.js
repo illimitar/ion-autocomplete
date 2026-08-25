@@ -419,6 +419,17 @@ describe('ion-autocomplete single select', function () {
         expect(getSearchInputElement().controller('ngModel').$options.debounce).toBe(1000);
     });
 
+    it('must default to a 300ms debounce on the inner search input field when ng-model-options is not set (GESTOR-24)', function () {
+        var element = compileElement('<input ion-autocomplete type="text" readonly="readonly" class="ion-autocomplete" autocomplete="off" ng-model="model"/>');
+
+        // click on the element
+        element.triggerHandler('click');
+        scope.$digest();
+
+        // expect the default debounce to be applied so typing does not fire one request per keystroke
+        expect(getSearchInputElement().controller('ngModel').$options.debounce).toBe(300);
+    });
+
     it('must remove the search container if the scope is destroyed', function () {
         var element = compileElement('<input ion-autocomplete type="text" readonly="readonly" class="ion-autocomplete" autocomplete="off" ng-model="model" />');
 

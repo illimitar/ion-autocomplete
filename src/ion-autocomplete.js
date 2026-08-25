@@ -57,7 +57,9 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
                 this.manageExternally = valueOrDefault($attrs.manageExternally, "false");
                 this.clearOnSelect = valueOrDefault($attrs.clearOnSelect, "true");
                 this.clearOnRemove = valueOrDefault($attrs.clearOnRemove, "false");
-                this.ngModelOptions = valueOrDefault($scope.$eval($attrs.ngModelOptions), {});
+                // default debounce so the search input does not fire one request per keystroke
+                // (GESTOR-24); an explicit ng-model-options attribute still overrides this.
+                this.ngModelOptions = valueOrDefault($scope.$eval($attrs.ngModelOptions), { debounce: 300 });
                 this.openClass = valueOrDefault($attrs.openClass, 'ion-autocomplete-open');
                 this.closeClass = valueOrDefault($attrs.closeClass, 'ion-autocomplete-close');
 
