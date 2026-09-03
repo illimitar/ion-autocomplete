@@ -61,6 +61,8 @@ describe('ion-autocomplete single select', function () {
 
         // expect the value of the input field to be empty
         expect(element[0].value).toBe('');
+        expect(element[0].placeholder).toBe('Selecionar...');
+        expect(element.parent()[0].querySelector('.ion-autocomplete-field-indicator i').classList.contains('ion-chevron-down')).toBe(true);
     });
 
     it('must show the value in the input field if the model is already defined', function () {
@@ -181,6 +183,20 @@ describe('ion-autocomplete single select', function () {
 
         expect(scope.itemsMethod.calls.count()).toBe(0);
         expect(element.controller('ionAutocomplete').searchItems.length).toBe(0);
+    });
+
+    it('must open without calling the items method', function () {
+        scope.itemsMethod = function (query) {
+            return [query];
+        };
+        spyOn(scope, 'itemsMethod').and.callThrough();
+        var element = compileElement('<input ion-autocomplete type="text" readonly="readonly" class="ion-autocomplete" autocomplete="off" ng-model="model" items-method="itemsMethod(query)"/>');
+
+        element.triggerHandler('click');
+        scope.$digest();
+
+        expect(scope.itemsMethod.calls.count()).toBe(0);
+        expect(getSearchContainerElement().hasClass('ion-autocomplete-open')).toBe(true);
     });
 
     it('must call the items method if the passed query is empty', function () {

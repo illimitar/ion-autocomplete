@@ -1,5 +1,18 @@
 # Release notes of ion-autocomplete
 
+## Version 0.4.11
+
+* Updated the default presentation for the Illimitar Ionic `1.3.23` modern theme.
+* Improved field focus, disabled state, search header, dividers, results and loading feedback.
+* Added a contextual modal header and icon-based search action.
+* Prevented opening or focusing the field from executing an empty search.
+* Kept focus in the search input when its body is clicked.
+* Added a persistent search affordance to closed autocomplete fields.
+* Aligned the field affordance to the input bounds across form layouts.
+* Prevented the opening pointer event from selecting an item behind the field.
+* Matched the search affordance border to native date controls.
+* Matched the closed field to native selects with a chevron and the default `Selecionar...` placeholder.
+
 ## Version 0.4.9
 
 * Tag: [0.4.9](https://github.com/illimitar/ion-autocomplete/tree/v0.4.9)

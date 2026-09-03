@@ -30,6 +30,7 @@ ion-autocomplete
         - [The `cancel-button-clicked-method` (same as done button)](#the-cancel-button-clicked-method-same-as-done-button)
         - [ComponentId](#component-id)
         - [Placeholder](#placeholder)
+        - [Header label](#header-label)
         - [Cancel button label](#cancel-button-label)
         - [Select items label](#select-items-label)
         - [Selected items label](#selected-items-label)
@@ -156,39 +157,7 @@ $scope.callbackMethod = function (query, isInitializing, componentId) {
 }
 ```
 
-If you want to pre populate the items which are shown when the modal is visible before the user enters a query then you can check the `isInitializing` flag of
-the `items-method` as this is set to true if it is called for the initial items. Here is an example which shows the `test` item as an initial item:
-```javascript
-$scope.callbackMethod = function (query, isInitializing) {
-    if(isInitializing) {
-        // depends on the configuration of the `items-method-value-key` (items) and the `item-value-key` (name) and `item-view-value-key` (name)
-        return { items: [ { name: "test" } ] }
-    } else {
-        return $http.get(endpoint);
-    }
-}
-```
-
-If you want to clear the list each time the user opens the modal then just return an empty array like in the following example:
-```javascript
-$scope.callbackMethod = function (query, isInitializing) {
-    if(isInitializing) {
-        // depends on the configuration of the `items-method-value-key` (items) and the `item-value-key` (name) and `item-view-value-key` (name)
-        return { items: [] }
-    } else {
-        return $http.get(endpoint);
-    }
-}
-```
-
-And if you do not want that the searched items list gets modified then just return nothing as in this example:
-```javascript
-$scope.callbackMethod = function (query, isInitializing) {
-    if(!isInitializing) {
-        return $http.get(endpoint);
-    }
-}
-```
+The modal opens without executing `items-method`. Searches begin when the user types or activates the search button.
 
 A common usage for the `items-method` is to use the [Google Map Geocode API](https://developers.google.com/maps/documentation/geocoding/intro?hl=de#Geocoding) for address suggestions.
 
@@ -447,10 +416,17 @@ need to define one callback method and you can distinguish the calls with the `c
 
 ### Placeholder
 
-You are also able to set the placeholder on the input field and on the search input field if you add the `placeholder`
-attribute to the directive:
+Without a `placeholder` attribute, the closed field displays `Selecionar...` and the modal search displays `Pesquise...`.
+You can set the placeholder on both the input field and the search input by adding the `placeholder` attribute to the directive:
 ```html
 <input ion-autocomplete type="text" readonly="readonly" class="ion-autocomplete" autocomplete="off" ng-model="model" placeholder="Enter the query to search for ..." />`
+```
+
+### Header label
+
+The modal header automatically uses the closest Ionic `.input-label`. You can override it with the `header-label` attribute:
+```html
+<input ion-autocomplete type="text" readonly="readonly" class="ion-autocomplete" autocomplete="off" ng-model="model" header-label="Customer" />`
 ```
 
 ### Cancel button label

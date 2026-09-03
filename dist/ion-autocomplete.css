@@ -4,23 +4,225 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 20;
+    z-index: 21;
     display: none;
     margin: auto;
+    background-color: #f3f6fa;
+    color: #172033;
 }
 
-input.ion-autocomplete[readonly] {
-    background-color: transparent;
-    cursor: text;
+input.ion-autocomplete {
+    min-height: 40px;
+    padding: 8px 52px 8px 12px;
+    border: 1px solid #dbe3ec;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #172033;
+    cursor: pointer;
+    transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
 }
 
-.ion-autocomplete-loading-icon .spinner svg {
-    width: 75px;
-    height: 75px;
+.ion-autocomplete-field {
+    position: relative;
+}
+
+.ion-autocomplete-field-indicator {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    z-index: 2;
+    display: flex;
+    width: 40px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dbe3ec;
+    border-left-color: #e1e7ef;
+    border-radius: 0 7px 7px 0;
+    background-color: #f3f6fa;
+    color: #1379df;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.ion-autocomplete-field:hover input.ion-autocomplete {
+    border-color: #aebed0;
+    background-color: #fbfdff;
+}
+
+.ion-autocomplete-field:hover .ion-autocomplete-field-indicator,
+.ion-autocomplete-field:focus-within .ion-autocomplete-field-indicator {
+    background-color: #e7f3ff;
+}
+
+.ion-autocomplete-field:hover .ion-autocomplete-field-indicator {
+    border-color: #aebed0;
+    border-left-color: #c8d8e9;
+}
+
+.ion-autocomplete-field:focus-within .ion-autocomplete-field-indicator {
+    border-color: #1379df;
+    border-left-color: #c8d8e9;
+}
+
+.ion-autocomplete-field input.ion-autocomplete[disabled] + .ion-autocomplete-field-indicator {
+    color: #8a98aa;
+    opacity: .65;
+}
+
+input.ion-autocomplete:focus {
+    border-color: #1379df;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(19, 121, 223, .22);
+}
+
+input.ion-autocomplete[disabled] {
+    background-color: #f7f9fc;
+    color: #65748b;
+    cursor: default;
+    opacity: .65;
+}
+
+.ion-autocomplete-container .ion-autocomplete-titlebar {
+    height: 48px;
+    border-color: #0f6fcf;
+    background-color: #1379df;
+    background-image: none;
+}
+
+.ion-autocomplete-container .ion-autocomplete-titlebar .title {
+    right: 52px;
+    left: 52px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.ion-autocomplete-container .ion-autocomplete-close-button {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+    color: #fff;
+}
+
+.ion-autocomplete-container .bar.item-input-inset.ion-autocomplete-searchbar {
+    top: 48px;
+    height: 60px;
+    padding: 8px 12px;
+    border-color: #dbe3ec;
+    background-color: #fff;
+    background-image: none;
+    box-shadow: 0 3px 10px rgba(23, 32, 51, .08);
+}
+
+.ion-autocomplete-container .ion-autocomplete-content {
+    top: 108px;
+}
+
+.ion-autocomplete-container .item-input-wrapper {
+    min-width: 0;
+    min-height: 42px;
+    padding-right: 12px;
+    padding-left: 4px;
+    border-color: #dbe3ec;
+    background-color: #f7f9fc;
+}
+
+.ion-autocomplete-container .item-input-wrapper:focus-within {
+    border-color: #1379df;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(19, 121, 223, .22);
+}
+
+.ion-autocomplete-container .ion-autocomplete-search {
+    height: 40px;
+    color: #172033;
+}
+
+.ion-autocomplete-container .ion-autocomplete-search-button {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    min-height: 40px;
+    padding: 0;
+    color: #1379df;
+    font-size: 20px;
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .ion-autocomplete-container .ion-autocomplete-titlebar {
+    height: calc(constant(safe-area-inset-top) + 48px);
+    height: calc(env(safe-area-inset-top) + 48px);
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .ion-autocomplete-container .ion-autocomplete-titlebar > * {
+    margin-top: 0;
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .ion-autocomplete-container .ion-autocomplete-titlebar .title {
+    top: constant(safe-area-inset-top);
+    top: env(safe-area-inset-top);
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .ion-autocomplete-container .ion-autocomplete-close-button {
+    top: calc(constant(safe-area-inset-top) + 2px);
+    top: calc(env(safe-area-inset-top) + 2px);
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .ion-autocomplete-container .ion-autocomplete-searchbar {
+    top: calc(constant(safe-area-inset-top) + 48px);
+    top: calc(env(safe-area-inset-top) + 48px);
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .ion-autocomplete-container .ion-autocomplete-content {
+    top: calc(constant(safe-area-inset-top) + 108px);
+    top: calc(env(safe-area-inset-top) + 108px);
+}
+
+.ion-autocomplete-container .item-divider {
+    min-height: 36px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-color: #e8edf3;
+    background-color: #f7f9fc;
+    color: #65748b;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+.ion-autocomplete-container .item:not(.item-divider) {
+    min-height: 52px;
+    border-color: #e8edf3;
+    background-color: #fff;
+    color: #172033;
+}
+
+.ion-autocomplete-container .item:not(.item-divider).activated {
+    background-color: rgba(19, 121, 223, .07);
+}
+
+.ion-autocomplete-container .item .icon {
+    color: #1379df;
+}
+
+.ion-autocomplete-loading-icon .spinner {
+    width: 40px;
+    height: 40px;
 }
 
 .ion-autocomplete-loading-icon {
-    padding-left: 10px;
+    padding: 32px 16px;
+    text-align: center;
+}
+
+.ion-autocomplete-loading-icon br {
+    display: none;
 }
 
 .ion-autocomplete-open {
@@ -29,4 +231,24 @@ input.ion-autocomplete[readonly] {
 
 .ion-autocomplete-close {
     display: none;
+}
+
+@media (min-width: 680px) {
+    .ion-autocomplete-container.modal {
+        top: 7%;
+        right: 7%;
+        bottom: 7%;
+        left: 7%;
+        width: auto;
+        min-height: 0;
+        border: 1px solid #dbe3ec;
+        border-radius: 12px;
+        box-shadow: 0 18px 48px rgba(23, 32, 51, .18);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    input.ion-autocomplete {
+        transition-duration: 0s;
+    }
 }
